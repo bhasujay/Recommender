@@ -1,4 +1,4 @@
-Listened for 75635.92675 minutes.
+Listened for 75595.30991666667 minutes.
 1522 Artists.
 4309 Songs.
 2524 Albums.

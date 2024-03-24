@@ -470,7 +470,6 @@ month,day,hour,min_frame,spotify_track_uri
 7,6,7,2,7FrJV8tydWEv1Mxu2mIQrm
 7,6,7,2,3swc6WTsr7rl9DqQKQA55C
 7,3,3,4,20fBuVybkHgjF6vNhSMROD
-7,3,3,4,20fBuVybkHgjF6vNhSMROD
 7,3,4,1,58QhkbaAkLFnn7JwAnAato
 7,3,4,1,3djNBlI7xOggg7pnsOLaNm
 7,3,4,1,3djNBlI7xOggg7pnsOLaNm
@@ -3029,8 +3028,6 @@ month,day,hour,min_frame,spotify_track_uri
 1,5,12,1,2ZAx6NDhX2yE5aL5ueEQgY
 1,5,12,1,2ZAx6NDhX2yE5aL5ueEQgY
 1,5,12,1,5QDLhrAOJJdNAmCTJ8xMyW
-1,5,12,1,2ZAx6NDhX2yE5aL5ueEQgY
-1,5,12,1,5QDLhrAOJJdNAmCTJ8xMyW
 1,5,12,1,2YpeDb67231RjR0MgVLzsG
 1,5,12,1,4iJyoBOLtHqaGxP12qzhQI
 1,5,12,2,61uyGDPJ06MkxJtHgPmuyO
@@ -4347,7 +4344,6 @@ month,day,hour,min_frame,spotify_track_uri
 2,5,12,2,0lYBSQXN6rCTvUZvg9S0lU
 2,5,12,2,1qE47wUKG2juJwPoLqg4C9
 2,5,12,3,2ygMBIctKIAfbEBcT9065L
-2,5,12,3,2ygMBIctKIAfbEBcT9065L
 2,5,12,3,5Z9KJZvQzH6PFmb8SNkxuk
 2,5,12,3,5Z9KJZvQzH6PFmb8SNkxuk
 2,5,12,3,61uyGDPJ06MkxJtHgPmuyO
@@ -4955,8 +4951,6 @@ month,day,hour,min_frame,spotify_track_uri
 2,1,1,1,4ywvnllm7kpaXDsa1VNNpY
 2,1,1,1,7eJMfftS33KTjuF7lTsMCx
 2,1,1,1,4ywvnllm7kpaXDsa1VNNpY
-2,1,1,1,4ywvnllm7kpaXDsa1VNNpY
-2,1,1,1,7eJMfftS33KTjuF7lTsMCx
 2,1,1,1,3TahdwXB4gJRWVAI00Ejqa
 2,1,1,1,7Ie9W94M7OjPoZVV216Xus
 2,1,1,2,0ARK753YaiJbpLUk7z5yIM
@@ -5145,7 +5139,6 @@ month,day,hour,min_frame,spotify_track_uri
 2,4,1,2,2x0RZdkZcD8QRI53XT4GI5
 2,4,1,2,48QmG1dfvMuYLxMPt7KSRA
 2,4,1,3,1rfofaqEpACxVEHIZBJe6W
-2,4,1,3,0lUSd7TCG8srh6HpIAEIWL
 2,4,1,3,0lUSd7TCG8srh6HpIAEIWL
 2,4,1,3,4VQNCzfZ3MdHEwwErNXpBo
 2,4,1,4,06KyNuuMOX1ROXRhj787tj
@@ -5625,7 +5618,6 @@ month,day,hour,min_frame,spotify_track_uri
 2,4,1,2,4UjMMQ9FXH8cSBJhbwQBJa
 2,4,1,2,6WC5fhc9XMaCrUNKNjm9xE
 2,4,1,2,6WC5fhc9XMaCrUNKNjm9xE
-2,4,1,2,4iJyoBOLtHqaGxP12qzhQI
 2,4,1,2,4iJyoBOLtHqaGxP12qzhQI
 2,4,1,2,4iJyoBOLtHqaGxP12qzhQI
 2,4,1,2,2ls70nUDfjzm1lSRDuKxmw
@@ -7558,7 +7550,6 @@ month,day,hour,min_frame,spotify_track_uri
 3,1,1,2,02MWAaffLxlfxAUY7c5dvx
 3,1,1,2,3BAWg71hTuj8Rq9CShHUNc
 3,1,1,2,0pqnGHJpmpxLKifKRmU6WP
-3,1,1,3,4DLVB91nzswc4wD7EchmXs
 3,1,1,3,4DLVB91nzswc4wD7EchmXs
 3,1,1,3,6F5c58TMEs1byxUstkzVeM
 3,1,1,3,4ywvnllm7kpaXDsa1VNNpY
@@ -9905,10 +9896,8 @@ month,day,hour,min_frame,spotify_track_uri
 5,6,5,1,5ZrDlcxIDZyjOzHdYW1ydr
 5,6,5,2,2yAVzRiEQooPEJ9SYx11L3
 5,6,5,2,7CvOnbFdnIoXMQ4eFCo5lB
-5,6,5,2,7CvOnbFdnIoXMQ4eFCo5lB
 5,6,5,2,3CisGh5CyKBDnGtjmsszSo
 5,6,5,2,06hsdMbBxWGqBO0TV0Zrkf
-5,6,5,2,3CisGh5CyKBDnGtjmsszSo
 5,6,5,2,06hsdMbBxWGqBO0TV0Zrkf
 5,6,5,2,2yAVzRiEQooPEJ9SYx11L3
 5,6,5,3,1fgvJXlcZ7uIddMpqsqw0L
@@ -16956,7 +16945,6 @@ month,day,hour,min_frame,spotify_track_uri
 8,3,10,1,5XDDOxCuc2kshlnp5HCDTW
 8,3,10,1,5XDDOxCuc2kshlnp5HCDTW
 8,3,10,2,15JINEqzVMv3SvJTAXAKED
-8,3,10,2,15JINEqzVMv3SvJTAXAKED
 8,3,10,2,6or1bKJiZ06IlK0vFvY75k
 8,3,10,3,3eMsgWDRq5dKl5SBTYGv2J
 8,3,10,3,6cS9PmLky2NhLOhpIsUlow
@@ -19557,7 +19545,6 @@ month,day,hour,min_frame,spotify_track_uri
 9,3,1,3,2ygMBIctKIAfbEBcT9065L
 9,3,1,3,2ygMBIctKIAfbEBcT9065L
 9,3,1,3,2ygMBIctKIAfbEBcT9065L
-9,3,1,3,2ygMBIctKIAfbEBcT9065L
 9,3,1,4,2ygMBIctKIAfbEBcT9065L
 9,3,1,4,2ygMBIctKIAfbEBcT9065L
 9,3,1,4,2ygMBIctKIAfbEBcT9065L
@@ -20161,7 +20148,6 @@ month,day,hour,min_frame,spotify_track_uri
 9,3,9,2,1I2MEjnS9c4OPMnKWbIuYs
 9,3,9,2,10SRMwb9EuVS1K9rYsBfHQ
 9,3,9,2,63irPUP3xB74fHdw1Aw9zR
-9,3,9,2,63irPUP3xB74fHdw1Aw9zR
 9,3,9,3,45OX2jjEw1l7lOFJfDP9fv
 9,3,9,3,45OX2jjEw1l7lOFJfDP9fv
 9,3,9,3,3uRLwBjI2TahxslcMTvpFs
@@ -20209,8 +20195,6 @@ month,day,hour,min_frame,spotify_track_uri
 9,4,1,3,4IaxDf2FixiQXq0mW7key9
 9,4,1,3,0ZeGfEAL5Rl4pd5LZBGuEK
 9,4,1,3,5QDLhrAOJJdNAmCTJ8xMyW
-9,4,1,3,5QDLhrAOJJdNAmCTJ8xMyW
-9,4,1,3,7GARzfC1mwhDuk4t9WOACq
 9,4,1,3,7GARzfC1mwhDuk4t9WOACq
 9,4,1,3,7GARzfC1mwhDuk4t9WOACq
 9,4,1,4,5QDLhrAOJJdNAmCTJ8xMyW
@@ -21098,7 +21082,6 @@ month,day,hour,min_frame,spotify_track_uri
 10,2,12,5,6FZDfxM3a3UCqtzo5pxSLZ
 10,2,12,5,6FZDfxM3a3UCqtzo5pxSLZ
 10,2,12,5,7w87IxuO7BDcJ3YUqCyMTT
-10,2,12,5,098PU9y0wA153H6UI36uMy
 10,2,12,5,098PU9y0wA153H6UI36uMy
 10,2,12,5,098PU9y0wA153H6UI36uMy
 10,2,13,0,1QvncSJ9UZhi0pZd8iiYKN
@@ -33343,16 +33326,12 @@ month,day,hour,min_frame,spotify_track_uri
 3,1,8,5,7kVDkZkZc8qBUBsF6klUoY
 3,1,8,5,4EDTT4kSqfpc0FKuxfNo2E
 3,1,8,5,4heFQCyiW0RUEX1Q1lb008
-3,1,8,5,7kVDkZkZc8qBUBsF6klUoY
-3,1,8,5,4heFQCyiW0RUEX1Q1lb008
 3,1,8,5,0VgkVdmE4gld66l8iyGjgx
 3,1,8,5,49FYlytm3dAAraYgpoJZux
-3,1,8,5,0VgkVdmE4gld66l8iyGjgx
 3,1,8,5,5W9QCBJ6Em0XWX333YrNhc
 3,1,8,5,1sOW4PuG5X3Ie3EXUhAopJ
 3,1,8,5,0NTMtAO2BV4tnGvw9EgBVq
 3,1,8,5,4BGZF4oLbTL0pWm7C18pbv
-3,1,8,5,5W9QCBJ6Em0XWX333YrNhc
 3,1,8,5,1sOW4PuG5X3Ie3EXUhAopJ
 3,1,8,5,4BGZF4oLbTL0pWm7C18pbv
 3,1,8,5,34D6FJysnQioVingDKufuf
@@ -33363,10 +33342,8 @@ month,day,hour,min_frame,spotify_track_uri
 3,1,8,5,3szf2z1Cy1QMrtHrbn8rz9
 3,1,8,5,1sOW4PuG5X3Ie3EXUhAopJ
 3,1,8,5,4BGZF4oLbTL0pWm7C18pbv
-3,1,8,5,0NTMtAO2BV4tnGvw9EgBVq
 3,1,8,5,0zqy3ss4CwD6u4QPksS0nI
 3,1,8,5,1Ci4wASMY4xtKVMeHA6Sd5
-3,1,8,5,49FYlytm3dAAraYgpoJZux
 3,1,8,5,3KkXRkHbMCARz0aVfEt68P
 3,1,8,5,2N9LEu6Pf8nDcp3GjWJT1Z
 3,1,8,5,1pacwLXyRO47ka0v6LTIiY
@@ -33693,8 +33670,6 @@ month,day,hour,min_frame,spotify_track_uri
 4,6,1,5,7mFj0LlWtEJaEigguaWqYh
 4,6,1,5,6zrJLhslleCHby0wbUnvVy
 4,6,1,5,3AzjcOeAmA57TIOr9zF1ZW
-4,6,1,5,27ZZdyTSQWI7Cug2d2PkqV
-4,6,1,5,7mFj0LlWtEJaEigguaWqYh
 4,6,1,5,0ct6r3EGTcMLPtrXHDvVjc
 4,6,1,5,3AzjcOeAmA57TIOr9zF1ZW
 4,6,1,5,3WlbeuhfRSqU7ylK2Ui5U7
@@ -33705,8 +33680,6 @@ month,day,hour,min_frame,spotify_track_uri
 4,6,1,5,7MXVkk9YMctZqd1Srtv4MB
 4,6,1,5,5NU40QTlXrDUJzDBdv79bg
 4,6,1,5,2dHHgzDwk4BJdRwy9uXhTO
-4,6,1,5,3WlbeuhfRSqU7ylK2Ui5U7
-4,6,1,5,4BGZF4oLbTL0pWm7C18pbv
 4,6,1,5,59CrwNtNqzOmODXRxwaknc
 4,6,1,5,6zrJLhslleCHby0wbUnvVy
 4,6,1,5,3AzjcOeAmA57TIOr9zF1ZW
@@ -33961,10 +33934,7 @@ month,day,hour,min_frame,spotify_track_uri
 4,1,6,2,1LbBOhicFmu7ktJqIHCELt
 4,1,6,2,3wuCCNCnBhJlwkIJTBZFiv
 4,1,6,2,2bCQHF9gdG5BNDVuEIEnNk
-4,1,6,2,2bCQHF9gdG5BNDVuEIEnNk
 4,1,6,2,1kiNatIrwDusOZfR29W0LJ
-4,1,6,2,43bgjI3ZddPJsu3JvNmYui
-4,1,6,2,1LbBOhicFmu7ktJqIHCELt
 4,1,6,2,3MBUQcMPekDVtn5mZ6Nv7c
 4,1,6,2,197dZDgejcTSZ8RYPEDowe
 4,1,6,3,197dZDgejcTSZ8RYPEDowe
@@ -34101,14 +34071,8 @@ month,day,hour,min_frame,spotify_track_uri
 4,1,17,1,3bidbhpOYeV4knp8AIu8Xn
 4,1,17,1,2K87XMYnUMqLcX3zvtAF4G
 4,1,17,1,5HCyWlXZPP0y6Gqq8TgA20
-4,1,17,1,7ef4DlsgrMEH11cDZd32M6
 4,1,17,1,4uUG5RXrOk84mYEfFvj3cK
 4,1,17,1,1sx0XsWUusUoPstbvokZjP
-4,1,17,1,3NRql0A1Ef4RCvT473iqgD
-4,1,17,1,7FIWs0pqAYbP91WWM0vlTQ
-4,1,17,1,3bidbhpOYeV4knp8AIu8Xn
-4,1,17,1,2K87XMYnUMqLcX3zvtAF4G
-4,1,17,1,474uVhyGgK5MtY9gMcDgGl
 4,1,17,1,3NRql0A1Ef4RCvT473iqgD
 4,1,17,1,1sx0XsWUusUoPstbvokZjP
 4,1,17,1,2MRfEJTfX12xPY0vx4STNe
@@ -34249,10 +34213,8 @@ month,day,hour,min_frame,spotify_track_uri
 4,4,11,4,1cRrfxxRziTY3fgxxypkGE
 4,4,11,4,474uVhyGgK5MtY9gMcDgGl
 4,4,11,4,6tqqQi9wpgr6M70LHDQtNd
-4,4,11,4,6tqqQi9wpgr6M70LHDQtNd
 4,4,11,4,1WYm3DmrrGiDa1f7rmxfVW
 4,4,11,4,6tqqQi9wpgr6M70LHDQtNd
-4,4,11,4,1WYm3DmrrGiDa1f7rmxfVW
 4,4,11,4,1cRrfxxRziTY3fgxxypkGE
 4,4,11,4,5YbGrhQCpOT4aOTlFgACke
 4,4,11,4,2CtCwQhY0ZLvr8L2l8Bo6e
@@ -34296,18 +34258,14 @@ month,day,hour,min_frame,spotify_track_uri
 4,4,11,4,5iv6lZAIguXWYW4Zaz5zvY
 4,4,11,4,1SUJUgd0Vln9fWgJshnVao
 4,4,11,4,5o0cR4FzBPvSE7831sBNvq
-4,4,11,4,5o0cR4FzBPvSE7831sBNvq
 4,4,11,4,4tC9EKLTfmLEryGR2f7Wjc
 4,4,11,4,1UPPDUrCYljlxigBScBWdY
 4,4,11,4,5GXuUITCCWAG4h8ABnQ8ve
 4,4,11,4,4ZbaDWAQ7H69i9sT9X5obr
 4,4,11,4,6nRopzLVNbe5wnpsF164t8
 4,4,11,4,5F0QhEiAXrX0lXseN8kpdA
-4,4,11,4,1UPPDUrCYljlxigBScBWdY
-4,4,11,4,4tC9EKLTfmLEryGR2f7Wjc
 4,4,11,4,3YfwOd8boTjTHYSKw4l4ho
 4,4,11,4,1AYn4YyxEF0SR3fGr6x7KN
-4,4,11,4,5iv6lZAIguXWYW4Zaz5zvY
 4,4,11,4,0HPgrZPFOHxobYLHxLneoj
 4,4,11,4,1AYn4YyxEF0SR3fGr6x7KN
 4,4,11,4,6nRopzLVNbe5wnpsF164t8
@@ -34678,9 +34636,7 @@ month,day,hour,min_frame,spotify_track_uri
 4,3,14,1,46IZ0fSY2mpAiktS3KOqds
 4,3,14,1,7oUHzZKNKUTrlU7DYxhQ7v
 4,3,14,1,0sKlV58cODrjxGFOyf9IXY
-4,3,14,1,0sKlV58cODrjxGFOyf9IXY
 4,3,14,1,7oUHzZKNKUTrlU7DYxhQ7v
-4,3,14,1,1kiNatIrwDusOZfR29W0LJ
 4,3,14,1,1kiNatIrwDusOZfR29W0LJ
 4,3,14,1,46IZ0fSY2mpAiktS3KOqds
 4,3,14,1,08bNPGLD8AhKpnnERrAc6G
@@ -34929,9 +34885,7 @@ month,day,hour,min_frame,spotify_track_uri
 4,6,18,4,34D6FJysnQioVingDKufuf
 4,0,13,1,34D6FJysnQioVingDKufuf
 4,0,13,1,11pEKMLmavDu8fxOB5QjbQ
-4,0,13,1,34D6FJysnQioVingDKufuf
 4,0,13,1,7szuecWAPwGoV1e5vGu8tl
-4,0,13,1,11pEKMLmavDu8fxOB5QjbQ
 4,0,13,1,2K9Ovn1o2bTGqbsABGC6m3
 4,0,17,2,0CrcwVLUe8wzLUIXgjXVZJ
 4,0,17,2,52NGJPcLUzQq5w7uv4e5gf

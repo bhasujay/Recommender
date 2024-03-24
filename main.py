@@ -44,10 +44,10 @@ def select_folder():
             path_label.config(fg='#000000')
         else:
             path_label.config(fg='#FF0000')
-            
+
+           
 def start_import_data():
-    threading.Thread(target=import_data).start()
-            
+    threading.Thread(target=import_data).start()         
 def import_data():
     global path
     
@@ -65,6 +65,8 @@ def import_data():
         win.update_idletasks()
         
     df = pd.concat(dfs, ignore_index=True)
+    path_label.config(text="Removing duplicates")
+    df = df.drop_duplicates()
     length = len(df)
     
     artist_list = []
@@ -166,8 +168,7 @@ def import_data():
     time.sleep(1.5)
     path_label.config(text=f"Your data is saved!")
     
-    
-    
+
 def train_execute():
     
     ###############################################

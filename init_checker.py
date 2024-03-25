@@ -11,8 +11,11 @@ def check(cwd,type):
         return True
     elif type == 'joblib' and 'model.joblib' in data_list:
         return True
+    elif type == 'token' and 'tokens.txt' in data_list:
+        return True
     else:
         return False
+    
     
 def api_access_avail(access_token):
     pass

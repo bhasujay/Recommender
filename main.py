@@ -4,31 +4,43 @@ import time
 import pandas as pd
 import glob
 import threading
+import subprocess
+import webbrowser
+import requests
 
-from tkinter import messagebox
+# from tkinter import messagebox
 from tkinter.ttk import Progressbar
 from tkinter import *
 from tkinter import filedialog
 from datetime import datetime 
 
 from init_checker import *
+from api_handler import app,user_info
 
 # to check the initial state
 cwd = os.getcwd()
 csv = check(cwd,'csv')
 model = check(cwd,'joblib')
+tokens = check(cwd,'token')
+logged = False
 
-def login_execute():
+   
+
+def start_server():
+    app.run()
     
-    ##############################################
+def login():
+    webbrowser.open_new("http://127.0.0.1:5000")  
+    login_btn.config(text="Update",command=update_user_info,fg='#FFFFFF',bg='#DE4242')
     
-    print("Logged in")
-    
-    ##############################################
-    
-    name.config(text="User : Bhazu")
-    email.config(text="Email : bhasumagic@gmail.com")
-    login_btn.config(command=showinfo,fg='#888888',bg='#11EE55',text="Logged in")
+def update_user_info():
+
+    name.config(text=f"User : {user_info["username"]}")
+    email.config(text=f"Email : {user_info["email"]}")
+
+    login_btn.config(text="Logged in",command=showinfo,fg='#454545',bg='#1DB954')
+    if logged and model:
+        rec_btn.config(fg='#000000',bg='#1ED760',command=recommend_execute)
     
     
 def select_folder():
@@ -40,17 +52,18 @@ def select_folder():
     if path:
         files = os.listdir(path)
         if files[0].split('.')[-1].lower() == 'json':
-            folder_btn.config(text='Import data',command=start_import_data,bg='#44FF88')
+            folder_btn.config(text='Import data',command=thread_import_data,bg='#44FF88')
             path_label.config(fg='#000000')
         else:
             path_label.config(fg='#FF0000')
 
            
-def start_import_data():
+def thread_import_data():
     threading.Thread(target=import_data).start()         
 def import_data():
     global path
     
+    folder_btn.config(text='Importing',command=showwarning,bg='#FF2222')
     if bar['value'] > 0:
         bar['value'] -= bar['value']
     
@@ -91,7 +104,7 @@ def import_data():
     df['month'] = ''
     df['day'] = ''
     df['hour'] = ''
-    df['min_frame'] = ''
+    df['min'] = ''
 
     if bar['value'] > 0:
         bar['value'] -= bar['value']
@@ -124,15 +137,7 @@ def import_data():
         df.loc[index, 'month'] = timestamp.month
         df.loc[index, 'day'] = timestamp.weekday()
         df.loc[index, 'hour'] = timestamp.hour
-
-        if length < 5000:
-            df.loc[index, 'min_frame'] = timestamp.minute // 30
-        elif length < 10000:
-            df.loc[index, 'min_frame'] = timestamp.minute // 20
-        elif length < 50000:
-            df.loc[index, 'min_frame'] = timestamp.minute // 10
-        else:
-            df.loc[index, 'min_frame'] = timestamp.minute // 5
+        df.loc[index, 'min'] = timestamp.minute
             
         path_label.config(text=f"{count} out of {length} data have been imported")
         bar['value'] += 1/length*100
@@ -146,7 +151,7 @@ def import_data():
     del uri_list
     del album_list
 
-    order = ['month','day','hour','min_frame','spotify_track_uri']
+    order = ['month','day','hour','min','spotify_track_uri']
     df = df[order]
     
     path_label.config(text=f"Saving Data...........")
@@ -158,10 +163,8 @@ def import_data():
     del df
 
     with open(os.path.join(cwd,'data/report.txt'), 'w') as f:
-        f.write(f"Listened for {ms_played / (1000 * 60)} minutes.\n{artists} Artists.\n{songs} Songs.\n{albums} Albums.")
+        f.write(f"Listened for {ms_played / (1000 * 60)} minutes.\n{artists} Artists.\n{songs} Songs.\n{albums} Albums.\n{length} of streams")
     
-
-    ###############################################
     
     folder_btn.config(text='Imported',command=showinfo,fg='#666666',bg='#F0F0F0')
     train_btn.config(text='Train',command=train_execute,bg='#44FF88',fg='#000000')
@@ -183,7 +186,7 @@ def train_execute():
         win.update_idletasks()
 
     ###############################################
-    
+    path_label.config(text="The Model is now trained!")
     train_btn.config(text='Trained',command=showinfo,fg='#666666',bg='#F0F0F0')
     rec_btn.config(fg='#000000',bg='#1ED760',command=recommend_execute)
     
@@ -199,22 +202,36 @@ def recommend_execute():
     
 def showinfo():
     tkinter.messagebox.showinfo(title=None,message="you completed that task!")
-            
+
+
+def showwarning():
+    tkinter.messagebox.showwarning(title='Warning',message="This task is still running!")
+
+if tokens:
+    logged = True
+else:
+    server_thread = threading.Thread(target=start_server)
+    server_thread.start()
+    logged = False
 
 win = Tk()
 win.title('Recommender')
-win.geometry('700x500')
+win.geometry('700x550')
 win.resizable(False , False)
 
 
 name = Label(win,text="User : None", font=('Arial', '13'))
-name.place(relx=0.1,rely=0.08)
+name.place(relx=0.1,rely=0.06)
 
 email = Label(win,text="Email : None", font=('Arial', '13'))
-email.place(relx=0.3,rely=0.08)
+email.place(relx=0.3,rely=0.06)
 
-login_btn = Button(win,text="Log in",font=('arial','13'),command=login_execute)
-login_btn.place(relx=0.75,rely=0.08,relheight=0.05,relwidth=0.15)
+if logged:
+    login_btn = Button(win,text="Logged in",font=('arial','13'),command=showinfo)
+    login_btn.place(relx=0.75,rely=0.06,relheight=0.05,relwidth=0.15)
+else:
+    login_btn = Button(win,text="Login",font=('arial','13'),command=login)
+    login_btn.place(relx=0.75,rely=0.06,relheight=0.05,relwidth=0.15)
 
 
 frame_btns = Frame(win,background='#FFFFFF')
@@ -236,21 +253,19 @@ else:
     train_btn = Button(frame_btns,text='Train',fg='#999999')
     train_btn.place(relheight=0.5,relwidth=0.2,relx=0.35,rely=0.25)
 
-if model:
-    rec_btn = Button(frame_btns,text='Recommend', font=('arial','13'),bg='#1ED760',command=recommend_execute)
-    rec_btn.place(relheight=0.5,relwidth=0.2,relx=0.75,rely=0.25)
-else:
-    rec_btn = Button(frame_btns,text='Recommend', font=('arial','13'),fg='#999999')
-    rec_btn.place(relheight=0.5,relwidth=0.2,relx=0.75,rely=0.25)
+rec_btn = Button(frame_btns,text='Recommend', font=('arial','13'),fg='#999999')
+rec_btn.place(relheight=0.5,relwidth=0.2,relx=0.75,rely=0.25)
 
-frame_btns.place(relx=0.1,rely=0.45,relheight=0.1,relwidth=0.8)
+frame_btns.place(relx=0.1,rely=0.4,relheight=0.1,relwidth=0.8)
 
 
 path_label = Label(win,text='')
-path_label.place(relx=0.11,rely=0.56)
+path_label.place(relx=0.11,rely=0.5)
+if model:
+    path_label.config(text="The Model is now trained!")
 
 bar = Progressbar(win, orient=HORIZONTAL , length=562)
-bar.place(relx=0.1,rely=0.6)
+bar.place(relx=0.1,rely=0.53)
 
 if csv or model:
     bar['value'] = 100

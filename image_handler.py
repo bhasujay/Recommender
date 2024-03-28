@@ -23,19 +23,19 @@ class remote_image:
         self.image = self.image.resize((width,height))        
         return self.image
     
-    # def download_image(self,filename):
-    #     try:
-    #         response = requests.get(self.url)
-    #         if response.status_code == 200:
-    #             with open(('img/'+filename), 'wb') as f:
-    #                 f.write(response.content)
-    #             return True
-    #         else:
-    #             print("Failed to download the image. Status code:", response.status_code)
-    #             return False
-    #     except Exception as e:
-    #         print("An error occurred:", str(e))
-    #         return False
+    def download_image(self,filename):
+        try:
+            response = requests.get(self.url)
+            if response.status_code == 200:
+                with open(('img/'+filename), 'wb') as f:
+                    f.write(response.content)
+                return True
+            else:
+                print("Failed to download the image. Status code:", response.status_code)
+                return False
+        except Exception as e:
+            print("An error occurred:", str(e))
+            return False
         
 class local_image:
     

@@ -1,47 +1,47 @@
-import tkinter.messagebox
 import os
+import sys
 import time
 import pandas as pd
 import glob
 import threading
-import subprocess
+import json
 import webbrowser
 import requests
 
 # from tkinter import messagebox
 from tkinter.ttk import Progressbar
 from tkinter import *
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 from datetime import datetime 
+from PIL import  Image , ImageTk
 
-from init_checker import *
-from api_handler import app,user_info
+from start_handler import *
+from login import *
+from image_handler import remote_image,local_image
+from API_handler import *
 
 # to check the initial state
 cwd = os.getcwd()
 csv = check(cwd,'csv')
 model = check(cwd,'joblib')
-tokens = check(cwd,'token')
-logged = False
+logged = check_login()
+# logged = True
 
-   
 
 def start_server():
-    app.run()
+    app.run(port=6767)
     
 def login():
-    webbrowser.open_new("http://127.0.0.1:5000")  
-    login_btn.config(text="Update",command=update_user_info,fg='#FFFFFF',bg='#DE4242')
+    webbrowser.open_new("http://127.0.0.1:6767")  
+    messagebox.showinfo("Reload","The program needs to be reloaded.\nPress the reload button")
+    login_btn.config(text="Reload",command=reload,fg='#FFFFFF',bg='#DE4242')
     
-def update_user_info():
+def reload():
+    win.destroy()
+    python = sys.executable
+    os.execl(python, python, *sys.argv)  
 
-    name.config(text=f"User : {user_info["username"]}")
-    email.config(text=f"Email : {user_info["email"]}")
-
-    login_btn.config(text="Logged in",command=showinfo,fg='#454545',bg='#1DB954')
-    if logged and model:
-        rec_btn.config(fg='#000000',bg='#1ED760',command=recommend_execute)
-    
+################################################################################################################################################
     
 def select_folder():
     global path
@@ -56,8 +56,7 @@ def select_folder():
             path_label.config(fg='#000000')
         else:
             path_label.config(fg='#FF0000')
-
-           
+         
 def thread_import_data():
     threading.Thread(target=import_data).start()         
 def import_data():
@@ -171,7 +170,6 @@ def import_data():
     time.sleep(1.5)
     path_label.config(text=f"Your data is saved!")
     
-
 def train_execute():
     
     ###############################################
@@ -189,8 +187,7 @@ def train_execute():
     path_label.config(text="The Model is now trained!")
     train_btn.config(text='Trained',command=showinfo,fg='#666666',bg='#F0F0F0')
     rec_btn.config(fg='#000000',bg='#1ED760',command=recommend_execute)
-    
-    
+     
 def recommend_execute():
     
     ###############################################
@@ -199,39 +196,117 @@ def recommend_execute():
     
     ###############################################
     
+################################################################################################################################################
     
 def showinfo():
-    tkinter.messagebox.showinfo(title=None,message="you completed that task!")
-
+    messagebox.showinfo(title=None,message="you completed that task!")
 
 def showwarning():
-    tkinter.messagebox.showwarning(title='Warning',message="This task is still running!")
+    messagebox.showwarning(title='Warning',message="This task is still running!")
 
-if tokens:
-    logged = True
+def logout():
+    result = messagebox.askquestion("Confirmation", "Do you want to Log out?")
+    if result == 'yes':
+        os.remove('img/profile.png')
+        os.remove('data/tokens.json')
+        os.remove('data/user_info.json')
+        reload()
+
+def get_current():
+    threading.Thread(target=update_curr_track_details).start()
+def update_curr_track_details():
+    data = get_current_track_info()
+    if data['track_name'] is not None:
+        album_photo = remote_image(data['album_art_url']).get_image(120,120,'album_art.png')
+        tk_album_photo = ImageTk.PhotoImage(album_photo)
+        al_photo.config(image=tk_album_photo)
+        al_photo.image = tk_album_photo
+            
+        if len(data['track_name']) > 30:
+            song = f"{data['track_name'][0:30]}\n        {data['track_name'][30:-1]}"
+        else:
+            song = data['track_name']
+            
+        if ',' in data['artist_name']:
+            artists = data['artist_name'].split(',')
+            artists = [value.strip() for value in artists]
+            if len(artists) > 3:
+                artist = f"{artists[0]}, {artists[1]}, {artists[2]},\n        {', '.join(artists[3:])}"
+            else:
+                artist = ', '.join(artists)
+        else:
+            artist = data['artist_name']
+            
+        text = f"Song : {song}\nArtist : {artist}\nAlbum : {data['album_name']}"
+        curr_info.config(text=text,justify='left')        
+    
+
+################################################################################################################################################
+
+album_photo = local_image('img/default_album_art.png').get_album_art()
+refresh_img = local_image('img/refresh.png').get_image(20,20)
+
+if logged:
+    with open('data/user_info.json', "r") as json_file:
+        user_info = json.load(json_file)    
+    
+    if os.path.exists('img/profile.png'):
+        profile_photo = local_image('img/profile.png').get_pro_image()
+    else:
+        profile_photo = local_image('img/default_profile.png').get_pro_image()
+    
 else:
+    
+    profile_photo = local_image('img/default_profile.png').get_pro_image()
     server_thread = threading.Thread(target=start_server)
     server_thread.start()
-    logged = False
+    
+
+
+################################################################################################################################################
 
 win = Tk()
 win.title('Recommender')
 win.geometry('700x550')
 win.resizable(False , False)
 
+tk_profile_photo = ImageTk.PhotoImage(profile_photo)
+tk_album_photo = ImageTk.PhotoImage(album_photo)
+tk_refresh_img = ImageTk.PhotoImage(refresh_img)
 
-name = Label(win,text="User : None", font=('Arial', '13'))
-name.place(relx=0.1,rely=0.06)
-
-email = Label(win,text="Email : None", font=('Arial', '13'))
-email.place(relx=0.3,rely=0.06)
 
 if logged:
-    login_btn = Button(win,text="Logged in",font=('arial','13'),command=showinfo)
+    pro_photo = Label(win,image=tk_profile_photo)
+    pro_photo.place(relx=0.1,rely=0.04)
+    
+    name = Label(win,text=f"{user_info["username"]} | {user_info["email"]}", font=('Kristen ITC', '11'))
+    name.place(relx=0.18,rely=0.06)
+    
+    login_btn = Button(win,text="Log out",font=('arial','13'),command=logout,bg='#1DB954')
     login_btn.place(relx=0.75,rely=0.06,relheight=0.05,relwidth=0.15)
+    
 else:
+    pro_photo = Label(win, image=tk_profile_photo)
+    pro_photo.place(relx=0.1,rely=0.04)
+    
+    name = Label(win,text="User | Email", font=('Kristen ITC', '11'))
+    name.place(relx=0.18,rely=0.06)
+    
     login_btn = Button(win,text="Login",font=('arial','13'),command=login)
     login_btn.place(relx=0.75,rely=0.06,relheight=0.05,relwidth=0.15)
+
+
+al_photo = Label(win,image=tk_album_photo)
+al_photo.place(relx=0.15,rely=0.15)
+
+get_current()
+    
+ref_button = Button(image=tk_refresh_img,command=get_current,borderwidth=0)
+ref_button.place(relheight=0.05,relwidth=0.04,relx=0.8,rely=0.2)
+
+curr_info = Label(text='Song :\nArtist :\nAlbum :',font=('Kristen ITC', '11'))
+curr_info.place(relx=0.35,rely=0.19)
+
 
 
 frame_btns = Frame(win,background='#FFFFFF')
@@ -253,13 +328,17 @@ else:
     train_btn = Button(frame_btns,text='Train',fg='#999999')
     train_btn.place(relheight=0.5,relwidth=0.2,relx=0.35,rely=0.25)
 
-rec_btn = Button(frame_btns,text='Recommend', font=('arial','13'),fg='#999999')
-rec_btn.place(relheight=0.5,relwidth=0.2,relx=0.75,rely=0.25)
+if logged and model:
+    rec_btn = Button(frame_btns,text='Recommend',command=recommend_execute, font=('arial','13'),fg='#000000',bg='#1DB954')
+    rec_btn.place(relheight=0.5,relwidth=0.2,relx=0.75,rely=0.25)
+else: 
+    rec_btn = Button(frame_btns,text='Recommend', font=('arial','13'),fg='#999999')
+    rec_btn.place(relheight=0.5,relwidth=0.2,relx=0.75,rely=0.25)
 
 frame_btns.place(relx=0.1,rely=0.4,relheight=0.1,relwidth=0.8)
 
 
-path_label = Label(win,text='')
+path_label = Label(win,text='',font=('Calibri Light (Headings)','8'))
 path_label.place(relx=0.11,rely=0.5)
 if model:
     path_label.config(text="The Model is now trained!")
@@ -269,6 +348,5 @@ bar.place(relx=0.1,rely=0.53)
 
 if csv or model:
     bar['value'] = 100
-
 
 win.mainloop()

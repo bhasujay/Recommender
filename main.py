@@ -25,7 +25,6 @@ cwd = os.getcwd()
 csv = check(cwd,'csv')
 model = check(cwd,'joblib')
 logged = check_login()
-# logged = True
 
 
 def start_server():
@@ -213,7 +212,8 @@ def logout():
         reload()
 
 def get_current():
-    threading.Thread(target=update_curr_track_details).start()
+    if logged:
+        threading.Thread(target=update_curr_track_details).start()
 def update_curr_track_details():
     data = get_current_track_info()
     if data['track_name'] is not None:
@@ -243,8 +243,6 @@ def update_curr_track_details():
 
 ################################################################################################################################################
 
-album_photo = local_image('img/default_album_art.png').get_album_art()
-refresh_img = local_image('img/refresh.png').get_image(20,20)
 
 if logged:
     with open('data/user_info.json', "r") as json_file:
@@ -271,8 +269,8 @@ win.geometry('700x550')
 win.resizable(False , False)
 
 tk_profile_photo = ImageTk.PhotoImage(profile_photo)
-tk_album_photo = ImageTk.PhotoImage(album_photo)
-tk_refresh_img = ImageTk.PhotoImage(refresh_img)
+tk_album_photo = ImageTk.PhotoImage(local_image('img/default_album_art.png').get_album_art())
+tk_refresh_img = ImageTk.PhotoImage(local_image('img/refresh.png').get_image(30,30))
 
 
 if logged:
@@ -302,9 +300,9 @@ al_photo.place(relx=0.15,rely=0.15)
 get_current()
     
 ref_button = Button(image=tk_refresh_img,command=get_current,borderwidth=0)
-ref_button.place(relheight=0.05,relwidth=0.04,relx=0.8,rely=0.2)
+ref_button.place(relx=0.8,rely=0.225)
 
-curr_info = Label(text='Song :\nArtist :\nAlbum :',font=('Kristen ITC', '11'))
+curr_info = Label(text='Song :\nArtist :\nAlbum :',font=('Kristen ITC', '11'),justify='left')
 curr_info.place(relx=0.35,rely=0.19)
 
 

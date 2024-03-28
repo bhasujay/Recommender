@@ -1,29 +1,42 @@
 import requests
 import time
 import json
+import os
+from dotenv import load_dotenv
 
-CLIENT_ID = 'a17d85fd78dc4e4f92217de5b3dfed2c'
-CLIENT_SECRET = '1616da6c8bb44ed98e89e7327b22d9a8'
+load_dotenv()
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+
+def get_access_token():
+    
+    if os.path.exists('data/tokens.json'):
+        with open('data/tokens.json', 'r') as file:
+            data = json.load(file)
+
+        access_token = data['access_token']
+
+        if time.time() < data['timestamp']:
+            refresh_token = data['refresh_token']        
+            token_refresh_url = "https://accounts.spotify.com/api/token"
+            payload = {
+                "grant_type": "refresh_token",
+                "refresh_token": refresh_token,
+                "client_id": CLIENT_ID,
+                "client_secret": CLIENT_SECRET
+            }
+            access_token = requests.post(token_refresh_url, data=payload).json()["access_token"]
+            with open("data/tokens.json", "w") as f:
+                json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3300)}, f)
+        return access_token       
+    else:
+        return None
+        
 
 def get_current_track_info():
     
-    with open('data/tokens.json', 'r') as file:
-        data = json.load(file)
-
-    access_token = data['access_token']
-
-    if time.time() < data['timestamp']:
-        refresh_token = data['refresh_token']        
-        token_refresh_url = "https://accounts.spotify.com/api/token"
-        payload = {
-            "grant_type": "refresh_token",
-            "refresh_token": refresh_token,
-            "client_id": CLIENT_ID,
-            "client_secret": CLIENT_SECRET
-        }
-        access_token = requests.post(token_refresh_url, data=payload).json()["access_token"]
-        with open("data/tokens.json", "w") as f:
-            json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3300)}, f)
+    access_token = get_access_token()
     
     headers = {
         'Authorization': f'Bearer {access_token}'

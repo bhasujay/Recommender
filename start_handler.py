@@ -4,9 +4,12 @@ import json
 import time
 
 from image_handler import remote_image
+from dotenv import load_dotenv
 
-CLIENT_ID = 'a17d85fd78dc4e4f92217de5b3dfed2c'
-CLIENT_SECRET = '1616da6c8bb44ed98e89e7327b22d9a8'
+load_dotenv()
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 def download_profile_picture():
     with open('data/user_info.json','r') as file:
@@ -28,7 +31,6 @@ def check_login():
             return True
         
         try:
-            access_token = data['access_token']
             refresh_token = data['refresh_token']        
             token_refresh_url = "https://accounts.spotify.com/api/token"
             payload = {

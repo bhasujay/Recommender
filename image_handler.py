@@ -18,7 +18,6 @@ class remote_image:
         except Exception as e:
             print(e)
             self.image = Image.open(f"img/default_{type}.png")
-            return None
             
         self.image = self.image.resize((width,height))        
         return self.image

@@ -6,14 +6,13 @@ import glob
 import threading
 import json
 import webbrowser
-import requests
 
 # from tkinter import messagebox
 from tkinter.ttk import Progressbar
 from tkinter import *
 from tkinter import filedialog, messagebox
 from datetime import datetime 
-from PIL import  Image , ImageTk
+from PIL import ImageTk
 
 from start_handler import *
 from login import *
@@ -217,7 +216,7 @@ def get_current():
 def update_curr_track_details():
     data = get_current_track_info()
     if data['track_name'] is not None:
-        album_photo = remote_image(data['album_art_url']).get_image(120,120,'album_art.png')
+        album_photo = remote_image(data['album_art_url']).get_image(120,120,'album_art')
         tk_album_photo = ImageTk.PhotoImage(album_photo)
         al_photo.config(image=tk_album_photo)
         al_photo.image = tk_album_photo

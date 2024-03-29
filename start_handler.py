@@ -3,14 +3,9 @@ import requests
 import json
 import time
 
-from datetime import datetime
 from image_handler import remote_image
-from dotenv import load_dotenv
+from API_handler import get_access_token
 
-load_dotenv()
-
-CLIENT_ID = os.getenv("CLIENT_ID")
-CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 def download_profile_picture():
     with open('data/user_info.json','r') as file:
@@ -20,35 +15,12 @@ def download_profile_picture():
 
 # the check_login fuction - this will check the access token state of the API
 def check_login():    
-    if os.path.exists('data/tokens.json'):
+    if get_access_token() is None:
+        return False
+    else:
         if not(os.path.exists('img/profile.png')):
             download_profile_picture()
-        
-        with open('data/tokens.json', 'r') as file:
-            data = json.load(file)
-
-        if time.time() < data['timestamp']:
-            print("not expired")
-            return True
-        
-        try:
-            refresh_token = data['refresh_token']        
-            token_refresh_url = "https://accounts.spotify.com/api/token"
-            payload = {
-                "grant_type": "refresh_token",
-                "refresh_token": refresh_token,
-                "client_id": CLIENT_ID,
-                "client_secret": CLIENT_SECRET
-            }
-            access_token = requests.post(token_refresh_url, data=payload).json()["access_token"]
-            with open("data/tokens.json", "w") as f:
-                json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3599)}, f)
-            print("expired, refreshed into a new one")
-            return True
-        except:
-            return False
-    else:
-        return False
+        return True
 
 
 

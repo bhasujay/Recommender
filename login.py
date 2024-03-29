@@ -14,12 +14,10 @@ app = Flask(__name__)
 
 # Global variables 
 user_info = {}
-CLIENT_ID = 'a17d85fd78dc4e4f92217de5b3dfed2c'
-CLIENT_SECRET = '1616da6c8bb44ed98e89e7327b22d9a8'
 
 @app.route("/")
 def index():
-    return redirect("https://accounts.spotify.com/authorize?client_id=a17d85fd78dc4e4f92217de5b3dfed2c&response_type=code&redirect_uri=http://localhost:6767/callback&scope=user-read-private%20user-read-email%20user-read-currently-playing&state=123")
+    return redirect("https://accounts.spotify.com/authorize?client_id=a17d85fd78dc4e4f92217de5b3dfed2c&response_type=code&redirect_uri=http://localhost:6767/callback&scope=user-read-private%20user-read-recently-played%20user-read-email%20user-read-currently-playing&state=123")
 
 @app.route("/callback")
 def callback():

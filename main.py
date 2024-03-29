@@ -300,7 +300,7 @@ al_photo.place(relx=0.15,rely=0.15)
 get_current()
     
 ref_button = Button(image=tk_refresh_img,command=get_current,borderwidth=0)
-ref_button.place(relx=0.8,rely=0.225)
+ref_button.place(relx=0.8,rely=0.135)
 
 curr_info = Label(text='Song :\nArtist :\nAlbum :',font=('Kristen ITC', '11'),justify='left')
 curr_info.place(relx=0.35,rely=0.19)

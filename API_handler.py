@@ -14,10 +14,12 @@ def get_access_token():
     if os.path.exists('data/tokens.json'):
         with open('data/tokens.json', 'r') as file:
             data = json.load(file)
-
-        access_token = data['access_token']
-
+        
         if time.time() < data['timestamp']:
+            print("not expired")
+            return data['access_token']
+
+        try:
             refresh_token = data['refresh_token']        
             token_refresh_url = "https://accounts.spotify.com/api/token"
             payload = {
@@ -28,8 +30,11 @@ def get_access_token():
             }
             access_token = requests.post(token_refresh_url, data=payload).json()["access_token"]
             with open("data/tokens.json", "w") as f:
-                json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3300)}, f)
-        return access_token       
+                json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3599)}, f)
+            print("expired, refrshed into a new one")
+            return access_token
+        except:
+            return None   
     else:
         return None
         

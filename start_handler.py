@@ -3,6 +3,7 @@ import requests
 import json
 import time
 
+from datetime import datetime
 from image_handler import remote_image
 from dotenv import load_dotenv
 
@@ -18,7 +19,7 @@ def download_profile_picture():
 
 
 # the check_login fuction - this will check the access token state of the API
-def check_login():
+def check_login():    
     if os.path.exists('data/tokens.json'):
         if not(os.path.exists('img/profile.png')):
             download_profile_picture()
@@ -41,7 +42,7 @@ def check_login():
             }
             access_token = requests.post(token_refresh_url, data=payload).json()["access_token"]
             with open("data/tokens.json", "w") as f:
-                json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3300)}, f)
+                json.dump({"access_token": access_token, "refresh_token": refresh_token,"timestamp":(time.time()+3599)}, f)
             print("expired, refreshed into a new one")
             return True
         except:

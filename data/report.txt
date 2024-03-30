@@ -1,5 +1,5 @@
-Listened for 75595.30991666667 minutes.
-1522 Artists.
-4309 Songs.
-2524 Albums.
-35150 of streams
+Listened for 71422.86713333333 minutes.
+1495 Artists.
+4156 Songs.
+2449 Albums.
+31727 of streams

@@ -11,6 +11,8 @@ def get_song_info(song_uri, access_token):
     }
     response = requests.get(f'https://api.spotify.com/v1/tracks/{song_id}', headers=headers)
     song_info = response.json()
+    
+    print(song_info)
 
     # Extract and return relevant information about the song
     return {
@@ -24,6 +26,6 @@ def get_song_info(song_uri, access_token):
 
 # Example usage:
 access_token = get_access_token()
-song_uri = 'spotify:track:7ucAyhKPjKsLrP14q4mcyo'  # Example song URI
+song_uri = 'spotify:track:60SdxE8apGAxMiRrpbmLY0'  # Example song URI
 song_info = get_song_info(song_uri, access_token)
 print(song_info)

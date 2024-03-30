@@ -76,7 +76,7 @@ def import_data():
         
     df = pd.concat(dfs, ignore_index=True)
     path_label.config(text="Removing duplicates")
-    df = df.drop_duplicates()
+    df.drop_duplicates(subset=['ts'], keep='first',inplace=True)
     length = len(df)
     
     artist_list = []
@@ -100,8 +100,9 @@ def import_data():
         
     df['month'] = ''
     df['day'] = ''
+    df['day_name'] = ''
     df['hour'] = ''
-    df['min'] = ''
+    df['min_frame'] = ''
 
     if bar['value'] > 0:
         bar['value'] -= bar['value']
@@ -132,9 +133,12 @@ def import_data():
             
         df.loc[index, 'spotify_track_uri'] = uri
         df.loc[index, 'month'] = timestamp.month
-        df.loc[index, 'day'] = timestamp.weekday()
+        df.loc[index, 'day'] = timestamp.day
+        df.loc[index, 'day_name'] = timestamp.weekday()
         df.loc[index, 'hour'] = timestamp.hour
-        df.loc[index, 'min'] = timestamp.minute
+        df.loc[index, 'min_frame'] = timestamp.minute // 5
+        
+        print(f"month - {timestamp.month} / day - {timestamp.day}({timestamp.weekday()}) / hour - {timestamp.hour} / minute - {timestamp.minute // 5}")
             
         path_label.config(text=f"{count} out of {length} data have been imported")
         bar['value'] += 1/length*100
@@ -148,7 +152,9 @@ def import_data():
     del uri_list
     del album_list
 
-    order = ['month','day','hour','min','spotify_track_uri']
+
+    df.rename(columns={'spotify_track_uri': 'uri'},inplace=True)
+    order = ['month','day','day_name','hour','min_frame','uri']
     df = df[order]
     
     path_label.config(text=f"Saving Data...........")
@@ -222,7 +228,7 @@ def update_curr_track_details():
         al_photo.image = tk_album_photo
             
         if len(data['track_name']) > 30:
-            song = f"{data['track_name'][0:30]}\n        {data['track_name'][30:-1]}"
+            song = f"{data['track_name'][:30]}\n        {data['track_name'][30:]}"
         else:
             song = data['track_name']
             
@@ -235,8 +241,13 @@ def update_curr_track_details():
                 artist = ', '.join(artists)
         else:
             artist = data['artist_name']
+        
+        if len(data['album_name'].split(' ')) > 6:
+            album = f"{' '.join(data['album_name'].split(' ')[:-2])}\n        {' '.join(data['album_name'].split(' ')[-2:])}"
+        else:
+            album = data['album_name']
             
-        text = f"Song : {song}\nArtist : {artist}\nAlbum : {data['album_name']}"
+        text = f"Song : {song}\nArtist : {artist}\nAlbum : {album}"
         curr_info.config(text=text,justify='left')        
     
 
@@ -297,13 +308,12 @@ al_photo = Label(win,image=tk_album_photo)
 al_photo.place(relx=0.15,rely=0.15)
 
 get_current()
-    
-ref_button = Button(image=tk_refresh_img,command=get_current,borderwidth=0)
-ref_button.place(relx=0.8,rely=0.135)
 
 curr_info = Label(text='Song :\nArtist :\nAlbum :',font=('Kristen ITC', '11'),justify='left')
-curr_info.place(relx=0.35,rely=0.19)
+curr_info.place(relx=0.35,rely=0.16)
 
+ref_button = Button(image=tk_refresh_img,command=get_current,borderwidth=0)
+ref_button.place(relx=0.8,rely=0.135)
 
 
 frame_btns = Frame(win,background='#FFFFFF')
